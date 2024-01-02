@@ -1,0 +1,330 @@
+body {
+          padding-top: 70px; 
+      }
+      pre{
+          padding: 1em;
+          background-color: #dddddd;
+      }
+      table{
+          border: 1px solid black; 
+          border-collapse: collapse; 
+          width: 100%; 
+      }
+      th,td{
+          border: 1px solid black; 
+          padding: 8px; 
+          text-align: left;
+      }
+      th{
+          background-color: #dddddd;
+      }
+      img{
+          max-width: 100%;
+          height: auto;
+      }
+      ::-webkit-scrollbar {
+          width: 1px;
+          height: 1px
+      }
+      ::-webkit-scrollbar-track {
+          background-color: transparent;
+          -webkit-border-radius: 2em;
+          -moz-border-radius: 2em;
+          border-radius: 2em
+      }
+      ::-webkit-scrollbar-thumb {
+          background-color: #30B07F;
+          background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 100%,transparent 100%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+          -webkit-border-radius: 2em;
+          -moz-border-radius: 2em;
+          border-radius: 2em
+      }
+      
+      #countdown{
+          font-size: 20px;
+      }
+/*通用评论组件样式草案*/
+#comments a {
+    color: #3F51B5;
+}
+#comments .comment-pagegroup {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+#comments a.content-page {
+    color: #fff;
+    background: #3F51B5;
+    padding: 5px 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 100ms;
+}
+#comments a.content-page:hover {
+    background: #000;
+}
+#comments .content-page svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    vertical-align: middle;
+}
+#comments img.avatar {
+    float: left;
+    margin-right: 10px;
+    border: 2px solid #e6e6e6;
+    border-radius: 5px;
+}
+.comment-list .comment-col {
+    padding: 10px;
+    margin: 10px 0;
+    border-bottom: 1px solid #dfdfdf;
+    background: rgba(222,222,222,.3);
+    border-radius: 8px;
+}
+.comment-author cite {
+    font-weight: bold;
+    font-style: normal;
+}
+#comments .comment-meta a {
+    color: #999;
+    font-size: .92857em;
+}
+#comments .comment-reply{
+    float: right;
+    font-weight: bold;
+}
+#comments .cancel-comment-reply button, #comments .comment-reply button {
+    color: #3F51B5;
+    font-size: small;
+}
+#comments input,.protected input{
+    z-index: 10;
+    padding: 5px;
+    border-radius: 5px;
+    border: 0;
+    -webkit-box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+    box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+}
+#comments p {
+    margin-bottom: 8px;
+}
+#comments label {
+    color: #3F51B5;
+    font-size: small;
+}
+#comments .submit {
+    background: #2196F3;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    float: right;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 100ms;
+}
+#comments .submit:hover {
+    background: #3F51B5;
+}
+/*【添加评论】文字样式*/
+#comments #response {
+    font-size: 18px;
+    font-weight: bold;
+}
+#comments .comment-body #response {
+    display: none;
+}
+/*【评论框】文字样式*/
+#comments #textarea {
+    display: block;
+    border: 1px solid #c2c2c2;
+    width: 100%;
+    border-radius: 5px;
+    padding: 4px 8px;
+    min-height: 100px;
+}
+@media (min-width: 768px){
+#comments .inputgrap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+}
+#comments input {
+    display: block;
+    border: 1px solid #c2c2c2;
+    width: 100%;
+    border-radius: 5px;
+    padding: 4px 8px;
+}
+/*二级评论缩进*/
+.comment-children {
+    margin-left: 25px;
+}
+.comment-children .comment-children {
+    margin-left: 0;
+}
+.comment-clear{
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+
+
+
+
+#write>ul:first-child,
+#write>ol:first-child {
+    margin-top: 30px;
+}
+
+body>*:first-child {
+    margin-top: 0 !important;
+}
+
+body>*:last-child {
+    margin-bottom: 0 !important;
+}
+
+
+/* a {
+    color: var(--main-6);
+    font-weight: 500;
+    padding: 0 2px;
+    text-decoration: none;
+} */
+
+a {
+    color: blue;
+    font-weight: 500;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+
+/* 链接 */
+
+
+/* #write a {
+    border-bottom: 1px solid var(--main-6);
+    color: var(--main-6);
+    text-decoration: none;
+} */
+
+#write a {
+    border-bottom: 1px solid blue;
+    color: blue;
+    text-decoration: none;
+}
+
+
+/* 目录 */
+
+#write a.md-toc-inner {
+    line-height: 1.6;
+    white-space: pre-line;
+    border-bottom: none;
+}
+
+#write a:hover {
+    border-bottom: 2px solid var(--main-6);
+    color: var(--main-7);
+}
+
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body>h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h1:first-child+h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h3:first-child,
+body>h4:first-child,
+body>h5:first-child,
+body>h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+#write ol,
+#write ul {
+    padding-left: 25px;
+    margin: .5rem 0;
+}
+
+#write ol>li,
+#write ul>li {
+    color: #db4d52;
+    font-weight: bold;
+}
+
+#write ol>li>*,
+#write ul>li>* {
+    color: #333;
+    font-weight: normal;
+}
+
+#write ol>li>*:not(ol):not(ul),
+#write ul>li>*:not(ol):not(ul) {
+    padding-left: .25rem;
+}
+
+#write ul {
+    list-style-type: disc;
+}
+
+blockquote {
+    border-left: 4px solid rgb(239, 112, 96);
+    padding: 10px 15px;
+    color: #3f3f3f;
+    background-color: #fff9f9;
+}
