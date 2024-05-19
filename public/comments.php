@@ -99,7 +99,7 @@ define('__TYPECHO_GRAVATAR_PREFIX__', 'https://cravatar.cn/avatar/');
                     <p>
                         <label
                             for="url"<?php if ($this->options->commentsRequireURL): ?> class="required"<?php endif; ?>><?php _e('网站'); ?></label>
-                        <input type="url" name="url" id="url" class="text" placeholder="<?php _e('http://'); ?>"
+                        <input type="url" name="url" id="url" class="text" placeholder="<?php _e('https://'); ?>"
                                value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
                     </p>
                 </div>
@@ -109,13 +109,13 @@ define('__TYPECHO_GRAVATAR_PREFIX__', 'https://cravatar.cn/avatar/');
                     <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" placeholder="善语结善缘，恶语伤人心..."required><?php $this->remember('text'); ?></textarea>
                 </p>
                 <p>
-                    <button type="submit" class="submit"><?php _e('提交评论'); ?></button>
+                    <button type="submit" class="btn btn-outline-primary"><?php _e('提交评论'); ?></button>
                     <div class="comment-clear"></div>
                 </p>
             </form>
         </div>
     <?php else: ?>
-        <h3><?php _e('评论已关闭'); ?></h3>
+        <span><?php _e('博主关闭了当前页面的评论'); ?></span>
     <?php endif; ?>
     
 <?php if ($comments->have()): ?>

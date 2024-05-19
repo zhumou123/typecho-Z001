@@ -7,6 +7,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('public/header.php');
 ?>
+<div class="container">
 <div class="card p-4">
 <div>
   <?php Typecho_Widget::widget('Widget_Stat')->to($stat); ?>
@@ -17,7 +18,8 @@ $this->need('public/header.php');
 </div>
 
   <?php
-  $Month_E = array(1 => "一月",
+  $Month_E = array(
+  1 => "一月",
   2 => "二月",
   3 => "三月",
   4 => "四月",
@@ -69,4 +71,7 @@ $this->need('public/header.php');
   }
   ?>
 </div>
+<?php $this->need('public/aside.php'); ?>
+</div>
+
 <?php $this->need('public/footer.php'); ?>
