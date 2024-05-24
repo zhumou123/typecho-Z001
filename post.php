@@ -2,6 +2,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('public/header.php');
 ?>
+
 <div class="container">
 <div class="card p-4">
 <div>作者：<?php $this->author(); ?></div>
@@ -12,7 +13,6 @@ $this->need('public/header.php');
 <div>发布：<?php $this->date('Y-m-d'); ?></div>
 <hr>
 <?php $this->content(); ?>
-<?php $this->need('public/aside.php'); ?>
 </div>
 <?php $this->need('public/comments.php'); ?>
 </div>

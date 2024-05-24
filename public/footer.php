@@ -1,3 +1,4 @@
+</main>
 <footer class="py-3 bg-light text-center text-body-secondary" style="margin-top: 15px;">
     <div class="container">
       <p class="text-center text-muted">
@@ -11,7 +12,7 @@
         </div>
         <div class="item">
           <?php if ($this->options->gonganbeian): ?>
-            <img src="https://img.zhuxu.asia/img/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="drawing of a cat" class="el-image__inner" width="15" height="15">
+            <img src="<?php $this->options->themeUrl('/assets/img/beian.png'); ?>" alt="drawing of a cat" class="el-image__inner" width="15" height="15">
             <a href="https://beian.mps.gov.cn/#/query/webSearch" class="icpnum" target="_blank" rel="noreferrer"><?php $this->options->gonganbeian(); ?></a>
           <?php endif; ?>
         </div>

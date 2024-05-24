@@ -1,0 +1,212 @@
+      body {
+          padding-top: 70px; 
+          background-color: rgb(151 151 151);
+          font-family: "Droid Serif",Georgia,"Times New Roman","PingFang SC","Hiragino Sans GB","Source Han Sans CN","WenQuanYi Micro Hei","Microsoft Yahei",serif;
+      }
+      .logo-text {
+          font-size: 1.25rem;
+          font-weight: 600;
+          line-height: 1;
+          user-select: none;
+      }
+      li {
+          list-style: none;
+      }
+      pre{
+          padding: 1em;
+          background-color: #dddddd;
+      }
+      table{
+          border: 1px solid black; 
+          border-collapse: collapse; 
+          width: 100%; 
+      }
+      th,td{
+          border: 1px solid black; 
+          padding: 8px; 
+          text-align: left;
+      }
+      th{
+          background-color: #dddddd;
+      }
+      ::-webkit-scrollbar {
+          width: 1px;
+          height: 1px
+      }
+      ::-webkit-scrollbar-track {
+          background-color: transparent;
+          -webkit-border-radius: 2em;
+          -moz-border-radius: 2em;
+          border-radius: 2em
+      }
+      ::-webkit-scrollbar-thumb {
+          background-color: #30B07F;
+          background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 100%,transparent 100%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+          -webkit-border-radius: 2em;
+          -moz-border-radius: 2em;
+          border-radius: 2em
+      }
+      #countdown{
+          font-size: 20px;
+      }
+      .friends-ctx {
+          display: flex;
+          align-items: center;
+          box-shadow: 0 0 #000, 0 0 #000, 0 1px 3px 0 #000000, 0 1px 2px -1px #000000;
+          padding: 1rem 0.75rem;
+          border-radius: var(--bs-border-radius);
+          height: 6rem;
+      }
+      img{
+          max-width: 100%;
+          height: auto;
+      }
+
+#write>ul:first-child,
+#write>ol:first-child {
+    margin-top: 30px;
+}
+
+body>*:first-child {
+    margin-top: 0 !important;
+}
+
+body>*:last-child {
+    margin-bottom: 0 !important;
+}
+
+
+/* a {
+    color: var(--main-6);
+    font-weight: 500;
+    padding: 0 2px;
+    text-decoration: none;
+} */
+
+a {
+    color: blue;
+    font-weight: 500;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+
+/* 链接 */
+
+
+/* #write a {
+    border-bottom: 1px solid var(--main-6);
+    color: var(--main-6);
+    text-decoration: none;
+} */
+
+#write a {
+    border-bottom: 1px solid blue;
+    color: blue;
+    text-decoration: none;
+}
+
+
+/* 目录 */
+
+#write a.md-toc-inner {
+    line-height: 1.6;
+    white-space: pre-line;
+    border-bottom: none;
+}
+
+#write a:hover {
+    border-bottom: 2px solid var(--main-6);
+    color: var(--main-7);
+}
+
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body>h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h1:first-child+h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h3:first-child,
+body>h4:first-child,
+body>h5:first-child,
+body>h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+#write ol,
+#write ul {
+    padding-left: 25px;
+    margin: .5rem 0;
+}
+
+#write ol>li,
+#write ul>li {
+    color: #db4d52;
+    font-weight: bold;
+}
+
+#write ol>li>*,
+#write ul>li>* {
+    color: #333;
+    font-weight: normal;
+}
+
+#write ol>li>*:not(ol):not(ul),
+#write ul>li>*:not(ol):not(ul) {
+    padding-left: .25rem;
+}
+
+#write ul {
+    list-style-type: disc;
+}
+
+blockquote {
+    border-left: 4px solid rgb(239, 112, 96);
+    padding: 10px 15px;
+    color: #3f3f3f;
+    background-color: #fff9f9;
+}

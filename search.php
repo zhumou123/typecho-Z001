@@ -32,7 +32,6 @@ $this->need('public/header.php');
      </div>
   <?php endwhile; ?>
 <?php endif; ?>
-<?php $this->need('public/aside.php'); ?>
 </div>
 
 <?php $this->need('public/footer.php'); ?>

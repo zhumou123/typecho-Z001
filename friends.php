@@ -21,8 +21,7 @@ $this->need('public/header.php');
               <div class="col-md-4 col-sm-6 position-relative">
                   <a class="friends-card stretched-link" href="{url}" target="_blank" title="{description}"></a>
                   <div class="friends-ctx">
-                  <a data-fslightbox="" data-type="image" data-id="lightbox" href="{image}"><img 
-                  style="
+                  <a data-fslightbox="" data-type="image" data-id="lightbox" href="{image}"><img style="
     border-radius: 999px;
     width: 3.5rem;
     height: 3.5rem;
@@ -57,7 +56,7 @@ $this->need('public/header.php');
     margin: 1.25rem auto;
 };
 "
-                  class="friends-img lazy entered loaded" data-="" data-src="{image}" data-ll-status="loaded" src="{image}"></a>
+                  class="friends-img lazy entered loaded" data-src="{image}" data-ll-status="loaded" src="{image}"></a>
                   <div class="ms-2">
                   <div class="fw-bold fs-6 line-clamp-1 mb-2">{name}</div>
                   <div class="friends-text text-xs line-clamp-2">{description}</div></div></div>
@@ -69,7 +68,6 @@ $this->need('public/header.php');
         <?php endif; ?>
   </div>
   </div>
-  <?php $this->need('public/aside.php'); ?>
 </div>
 
 <?php $this->need('public/footer.php'); ?>

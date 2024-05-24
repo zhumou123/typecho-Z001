@@ -1,176 +1,76 @@
+<style type="text/css">
+    @media (min-width: 768px){
+    .inputgrap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    }
+</style>
+
+<?php $this->comments()->to($comments); ?>
+
 <div class="card p-4" style="margin-top:15px">
-  <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; 
-//如果你想使用其他评论头像插件，请注释下面这行代码！
-define('__TYPECHO_GRAVATAR_PREFIX__', 'https://cravatar.cn/avatar/');
-?>
-<?php function threadedComments($comments, $options){
- $commentClass = '';
-        if ($comments->authorId) {
-            if ($comments->authorId == $comments->ownerId) {
-                $commentClass .= ' comment-by-author';
-            } else {
-                $commentClass .= ' comment-by-user';
-            }
-        }
-
-   if ($comments->url) {
-        $author = '<a href="' . $comments->url . '" target="_blank" rel="external nofollow">' . $comments->author . '</a>';
-    } else {
-        $author = $comments->author;
-    }
-        ?>
-        <li itemscope itemtype="http://schema.org/UserComments" class="comment-body<?php
-        if ($comments->levels > 0) {
-            echo ' comment-child';
-            $comments->levelsAlt(' comment-level-odd', ' comment-level-even');
-        } else {
-            echo ' comment-parent';
-        }
-        $comments->alt(' comment-odd', ' comment-even');
-        echo $commentClass;
-        ?>">
-            <div class="comment-col" id="<?php $comments->theId(); ?>">
-            <div class="comment-author" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                <span itemprop="image"><?php $comments->gravatar(50); ?></span><!--评论头像-->
-                <cite class="fn" itemprop="name"><?php echo $author; ?></cite><!--评论昵称-->
-                <?php if ($comments->authorId === $comments->ownerId) : ?>
-                  <i style="flex-shrink: 0;background: #cbcbcb;color: #000;padding: 0 5px;border-radius: 2px;font-style: normal;">博主</i>
-                <?php endif; ?>
-                <div class="comment-reply">
-                  <button onclick="return TypechoComment.reply('comment-<?php $comments->coid(); ?>', <?php $comments->coid(); ?>);">回复</button>
-                </div>
-            </div>
-            <div class="comment-meta">
-                <a href="<?php $comments->permalink(); ?>">
-                    <time itemprop="commentTime"
-                          datetime="<?php $comments->date('c'); ?>">
-                          <?php $comments->date('Y年m月d日'); ?></time>
-                </a>
-                <?php if ('waiting' == $comments->status) { ?>
-                    <em class="comment-awaiting-moderation">您的评论正等待审核!</em>
-                <?php } ?>
-            </div>
-            <div class="comment-content" itemprop="commentText">
-<?php
-    $content = preg_replace('/<p>(.*)/', '<p>'.get_comment_at($comments->coid).'$1', $comments->content);
-    echo $content;
-?>
-            </div>
-            </div>
-            <?php if ($comments->children) { ?>
-                <div class="comment-children" itemprop="discusses">
-                    <?php $comments->threadedComments(); ?>
-                </div>
-            <?php } ?>
-        </li>
-        <?php
-    }
-?>
-
-<div id="comments" data-no-instant>
-    <?php $this->comments()->to($comments); ?>
-
-    <?php if ($this->allow('comment')): ?>
-        <div id="<?php $this->respondId(); ?>" class="respond">
-            <div class="cancel-comment-reply">
-                <button id="cancel-comment-reply-link" style="display:none" data-no-instant onclick="return TypechoComment.cancelReply();">取消回复</button>
-            </div>
-
-            <h3 id="response"><?php _e('添加新评论'); ?></h3>
-            <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
-                <?php if ($this->user->hasLogin()): ?>
-                    <p><?php _e('登录身份: '); ?><a
-                            href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a
-                            href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a>
-                    </p>
-                <?php else: ?>
-                <div class="inputgrap">
-                    <p>
-                        <label for="author" class="required"><?php _e('称呼'); ?></label>
-                        <input type="text" name="author" id="author" class="text"
-                               value="<?php $this->remember('author'); ?>" required/>
-                    </p>
-                    <p>
-                        <label
-                            for="mail"<?php if ($this->options->commentsRequireMail): ?> class="required"<?php endif; ?>><?php _e('Email'); ?></label>
-                        <input type="email" name="mail" id="mail" class="text"
-                               value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
-                    </p>
-                    <p>
-                        <label
-                            for="url"<?php if ($this->options->commentsRequireURL): ?> class="required"<?php endif; ?>><?php _e('网站'); ?></label>
-                        <input type="url" name="url" id="url" class="text" placeholder="<?php _e('https://'); ?>"
-                               value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
-                    </p>
-                </div>
-                <?php endif; ?>
-                <p>
-                    <label for="textarea" class="required"><?php _e('内容'); ?></label>
-                    <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" placeholder="善语结善缘，恶语伤人心..."required><?php $this->remember('text'); ?></textarea>
-                </p>
-                <p>
-                    <button type="submit" class="btn btn-outline-primary"><?php _e('提交评论'); ?></button>
-                    <div class="comment-clear"></div>
-                </p>
-            </form>
-        </div>
-    <?php else: ?>
-        <span><?php _e('博主关闭了当前页面的评论'); ?></span>
-    <?php endif; ?>
+  <?php if ($this->hidden) : ?>
+      <span>当前文章受密码保护，无法评论</span>
+  <?php else : ?>
+    <?php if ($this->allow('comment') && $this->options->JCommentStatus !== "off") : ?>
     
-<?php if ($comments->have()): ?>
-        <h3><?php $this->commentsNum(_t('暂无评论'), _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
-
-<?php $comments->listComments(); ?>
-        <div class="comment-pagegroup">
-<?php
-
-$npattern = '/\<li.*?class=\"next\"><a.*?\shref\=\"(.*?)\"[^>]*>/i';
-$ppattern = '/\<li.*?class=\"prev\"><a.*?\shref\=\"(.*?)\"[^>]*>/i';
-ob_start();
-$comments->pageNav();
-$con = ob_get_clean();
-$n=preg_match_all($npattern, $con, $nextlink);
-$p=preg_match_all($ppattern, $con, $prevlink);
-if($n){
-$nextlink=$nextlink[1][0];
-$nextlink=str_replace("#comments","?type=comments",$nextlink);
-}else{
-$nextlink=false;
-}
-
-if($p){
-$prevlink=$prevlink[1][0];
-$prevlink=str_replace("#comments","?type=comments",$prevlink);
-}else{
-$prevlink=false;
-}
-?>
-<?php if($prevlink): ?>
-    <a href="<?php echo $prevlink; ?>" class="content-page">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-            </svg>
-            <span>
-                上一页
-            </span>
-    </a>
-<?php else: ?>
-<div></div>
-<?php endif; ?>
-<?php if($nextlink): ?>
-    <a href="<?php echo $nextlink; ?>" class="content-page">
-            <span>
-                下一页
-            </span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-    </a>
-<?php endif; ?>
-
-    </div>
-<?php endif; ?>
-
-</div>
+      <h3 style="font-size: 18px;font-weight: bold;"><?php _e('添加新评论'); ?></h3>    
+      <div id="<?php $this->respondId(); ?>">
+        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
+          <div class="inputgrap">
+            <p>    
+                <label for="author" style="color: #3F51B5;font-size: small;"><?php _e('称呼'); ?></label>
+                <input class="form-control" type="text" name="author" id="author" class="text" value="<?php $this->user->hasLogin() ? $this->user->screenName() : $this->remember('author') ?>"autocomplete="off" maxlength="16" required/>
+              </p>
+            <p>
+                <label style="color: #3F51B5;font-size: small;" for="mail"<?php if ($this->options->commentsRequireMail): ?> class="required"<?php endif; ?>><?php _e('Email'); ?></label>
+                <input class="form-control" type="email" name="mail" id="mail" class="text" value="<?php $this->user->hasLogin() ? $this->user->mail() : $this->remember('mail') ?>"<?php if ($this->options->commentsRequireMail): ?> autocomplete="off" required<?php endif; ?> />
+              </p>
+            <p>
+                <label style="color: #3F51B5;font-size: small;" for="url"<?php if ($this->options->commentsRequireURL): ?> class="required"<?php endif; ?>><?php _e('网址'); ?></label>
+                <input class="form-control" type="url" name="url" id="url" autocomplete="off" class="text" placeholder="<?php _e('https://'); ?>" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
+              </p>
+          </div>
+          <div class="mb-3">
+            <label style="color: #3F51B5;font-size: small;" for="textarea" class="required"><?php _e('内容'); ?></label>
+            <textarea class="form-control" rows="8" cols="50" name="text" id="textarea" class="textarea" placeholder="善语结善缘，恶语伤人心..."required><?php $this->remember('text'); ?></textarea>
+          </div>
+          <div class="foot">
+            <div class="submit">
+              <button class="btn btn-outline-secondary btn-sm" type="submit"style="float: right;">发送评论</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    
+      <?php if ($comments->have()) : ?>
+        <?php $comments->listComments(); ?>
+        <?php
+        $comments->pageNav(
+          '<svg class="icon icon-prev" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M822.272 146.944l-396.8 396.8c-19.456 19.456-51.2 19.456-70.656 0-18.944-19.456-18.944-51.2 0-70.656l396.8-396.8c19.456-19.456 51.2-19.456 70.656 0 18.944 19.456 18.944 45.056 0 70.656z"/><path d="M745.472 940.544l-396.8-396.8c-19.456-19.456-19.456-51.2 0-70.656 19.456-19.456 51.2-19.456 70.656 0l403.456 390.144c19.456 25.6 19.456 51.2 0 76.8-26.112 19.968-51.712 19.968-77.312.512zm-564.224-63.488c0-3.584 0-7.68.512-11.264h-.512v-714.24h.512c-.512-3.584-.512-7.168-.512-11.264 0-43.008 21.504-78.336 48.128-78.336s48.128 34.816 48.128 78.336c0 3.584 0 7.68-.512 11.264h.512v714.24h-.512c.512 3.584.512 7.168.512 11.264 0 43.008-21.504 78.336-48.128 78.336s-48.128-35.328-48.128-78.336z"/></svg>',
+          '<svg class="icon icon-next" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M822.272 146.944l-396.8 396.8c-19.456 19.456-51.2 19.456-70.656 0-18.944-19.456-18.944-51.2 0-70.656l396.8-396.8c19.456-19.456 51.2-19.456 70.656 0 18.944 19.456 18.944 45.056 0 70.656z"/><path d="M745.472 940.544l-396.8-396.8c-19.456-19.456-19.456-51.2 0-70.656 19.456-19.456 51.2-19.456 70.656 0l403.456 390.144c19.456 25.6 19.456 51.2 0 76.8-26.112 19.968-51.712 19.968-77.312.512zm-564.224-63.488c0-3.584 0-7.68.512-11.264h-.512v-714.24h.512c-.512-3.584-.512-7.168-.512-11.264 0-43.008 21.504-78.336 48.128-78.336s48.128 34.816 48.128 78.336c0 3.584 0 7.68-.512 11.264h.512v714.24h-.512c.512 3.584.512 7.168.512 11.264 0 43.008-21.504 78.336-48.128 78.336s-48.128-35.328-48.128-78.336z"/></svg>',
+          1,
+          '...',
+          array(
+            'wrapTag' => 'ul',
+            'wrapClass' => 'Z001_pagination',
+            'itemTag' => 'li',
+            'textTag' => 'a',
+            'currentClass' => 'active',
+            'prevClass' => 'prev',
+            'nextClass' => 'next'
+          )
+        );
+        ?>
+      <?php endif; ?>
+      
+    <?php else : ?>
+      <?php if ($this->options->JCommentStatus === "off") : ?>
+      <span>博主关闭了所有页面的评论</span>
+      <?php else : ?>
+      <span>博主关闭了当前页面的评论</span>
+      <?php endif; ?>
+    <?php endif; ?>
+  <?php endif; ?>
 </div>
